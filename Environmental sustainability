@@ -341,11 +341,3 @@ for country in country_list:
         plt.title(f"Past and Future Outlook for {country}")
         plt.legend()
         plt.show()
-
-
-# Create a DataFrame of the Future Predictions
-future_pred = pd.DataFrame({'Year': x_new,
-                            'Renewable Energy Consumption':
-                            predictions_future_curve_fit})
-
-c_data_g = c_data.groupby('Cluster').last()
