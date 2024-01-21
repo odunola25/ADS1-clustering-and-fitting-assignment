@@ -183,16 +183,16 @@ def visualize_clusters(clustered_data, cluster_column, indicators):
 
     # Create a scatterplot for different combinations of the indicators for
     # Year 2015
-    sns.set_style('darkgrid')
 
     i_list = [0, 1, 2]
     j_list = [2, 0, 1]
     for i in i_list:
         for j in j_list:
             # Use a scatter plot to show clusters and cluster centers
-            sns.scatterplot(data=clustered_data, x=indicators[i],
-                            y=indicators[j],
-                            hue='Cluster', palette='viridis', s=100)
+            plt.scatter(clustered_data[indicators[i]],
+                        clustered_data[indicators[j]],
+                        c=clustered_data['Cluster'],
+                        cmap='viridis', s=100, label='Data Points')
 
             # Extract cluster centers
             cluster_centers = clustered_data['Cluster_Center'].tolist()
@@ -201,11 +201,9 @@ def visualize_clusters(clustered_data, cluster_column, indicators):
             center_x, _, center_y = zip(*cluster_centers)
 
             # Scatter plot of cluster centers using Seaborn
-            sns.scatterplot(x=center_x, y=center_y,
-                            marker='X', color='red',
-                            s=50, edgecolor='black',
-                            linewidth=1,
-                            label='Central')
+            plt.scatter(x=center_x, y=center_y, marker='X',
+                        color='red', s=50, edgecolor='black', linewidth=1,
+                        label='Central')
 
             plt.title('Cluster Data with Cluster Centers for 2015')
 
